@@ -49,6 +49,12 @@ import org.slf4j.LoggerFactory;
 
 public class ArtifactRegistryGradlePlugin implements Plugin<Object> {
 
+  static {
+    // Set the logging level for the Google HTTP client to WARNING to avoid logging sensitive information.
+   ch.qos.logback.classic.Logger httpLogger = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("com.google.api.client.http");
+   httpLogger.setLevel(ch.qos.logback.classic.Level.WARN);
+  }
+
   private static final Logger logger = LoggerFactory.getLogger(ArtifactRegistryGradlePlugin.class);
 
   static class ArtifactRegistryPasswordCredentials implements PasswordCredentials {

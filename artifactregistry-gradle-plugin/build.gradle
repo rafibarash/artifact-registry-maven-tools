@@ -12,6 +12,7 @@ java {
 dependencies {
 	implementation gradleApi()
 	implementation(libs.google.auth.library.oauth2.http)
+  implementation 'ch.qos.logback:logback-classic:1.4.11'
 }
 
 gradlePlugin {
