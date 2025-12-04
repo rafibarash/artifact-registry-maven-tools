@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import org.gradle.jvm.toolchain.JavaLanguageVersion
+
 plugins {
     id 'maven-publish'
     id 'signing'
@@ -22,12 +24,18 @@ plugins {
 description = 'Artifact Registry Maven Tools'
 ext.project_version = '2.2.6-SNAPSHOT'
 ext.isReleaseVersion = !project_version.endsWith("SNAPSHOT")
-
+\
 allprojects {
     apply plugin: 'java'
     apply plugin: 'maven-publish'
     group = 'com.google.cloud.artifactregistry'
     version = project_version
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(11)
+        }
+    }
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
