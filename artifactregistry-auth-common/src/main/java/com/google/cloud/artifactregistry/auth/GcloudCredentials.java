@@ -95,8 +95,8 @@ public class GcloudCredentials extends GoogleCredentials {
 
       if (exitCode != 0) {
         String stdErr = commandExecutorResult.stdErr;
-        throw new IOException(String.format("gcloud exited with status: %d\nOutput:\n%s\nError Output:\n%s\n",
-            exitCode, stdOut, stdErr));
+        LOGGER.debug("gcloud config config-helper failed with exit code: {}\\nSTDOUT:\\n{}\\nSTDERR:\\n{}", exitCode, stdOut, stdErr);
+        throw new IOException(String.format("gcloud exited with status: %d. Check debug logs for more details.", exitCode));
       }
 
       GenericData result = JSON_FACTORY.fromString(stdOut, GenericData.class);
